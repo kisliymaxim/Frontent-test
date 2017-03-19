@@ -1,0 +1,56 @@
+<div class="container col-md-8 col-md-offset-2">
+    <div class="row">   
+        <div class="col-md-4">
+            <img class="img-fluid rounded mx-auto d-block" src="http://smktesting.herokuapp.com/static/{{product?.img}}"/>
+        </div>
+        <div class="col-md-8">            
+            <h1>{{product?.title}}</h1>
+            <h5>{{product?.text}}</h5>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product_review">
+                        <h3>Review</h3>
+                        <hr/>
+                        <form [formGroup]="reviewForm" (ngSubmit)="add_review(reviewForm.value)">
+                            <div class="form-group row" [ngClass]="{'has-danger':!reviewForm.controls['review'].valid && reviewForm.controls['review'].touched}">
+                                <label for="review" class="col-sm-4">Leave your review</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control form-control-success" id="review" placeholder="Your review" name="review" [formControl]="reviewForm.controls['review']"></textarea>
+                                    <div *ngIf="reviewForm.controls['review'].hasError('required') && reviewForm.controls['review'].touched" class="form-control-feedback">You must include a text review.</div>
+                                </div>
+                            </div>
+                            <div class="form-group row" [ngClass]="{'has-danger':!reviewForm.controls['rate'].valid && reviewForm.controls['rate'].touched}">
+                                <label class="col-sm-4">Leave your rate</label>
+                                 <div class="col-sm-8">
+                                    <app-rating [rating]="reviewForm.rate" [isActive]='true' (ratingClick)='ratingComponetClick($event)'></app-rating>
+                                    <div *ngIf="reviewForm.controls['rate'].hasError('required') && reviewForm.controls['rate'].touched" class="form-control-feedback">You must include a rate.</div>
+                                 </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary btn-sm" [disabled]="!reviewForm.valid">Add review</button>
+                                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                </div>
+                            </div>
+                        </form>
+                        <hr/>
+                        <ul class="comments">
+                            <li class="clearfix" *ngFor="let review of reviews | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index">
+                                <div class="post-comments">
+                                    <p class="meta">{{review.created_at | date:'medium'}} <a>{{review.created_by.username}}</a> says :</p>                                    
+                                    <p>
+                                        <app-rating [rating]='review.rate' [review_id]='review.id' [isActive]='false'></app-rating>
+                                        {{review.text}}
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="pagination_controls">
+                            <pagination-controls (pageChange)="page = $event" id="1" maxSize="7" directionLinks="true" autoHide="true"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>

@@ -1,0 +1,13 @@
+<div class="container col-md-8 col-md-offset-2">
+    <h2>Product list</h2>
+    <div class="card-deck">
+        <div class="card product_item" *ngFor="let product of products">
+            <img class="card-img-top" src="http://smktesting.herokuapp.com/static/{{product.img}}" alt="{{product.title}}">
+            <div class="card-block">
+                <h4 class="card-title">{{product.title}}</h4>
+                <p class="card-text">{{product.text}}</p>
+                <a [routerLink]="['/product',product.id]" class="btn btn-primary">More info</a>
+            </div>
+        </div>
+    </div>
+</div>

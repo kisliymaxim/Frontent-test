@@ -1,0 +1,48 @@
+.product_review hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #FFFFFF;
+}
+.product_review a {
+    color: #0275d8;
+    text-decoration: none;
+}
+.product_review ul{
+	list-style-type: none;
+	padding: 0;
+}
+.product_review .post-comments{
+	border: 1px solid #eee;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    position: relative;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+       	 -o-border-radius: 4px;
+    		border-radius: 4px;
+	background: #fff;
+	color: #6b6e80;
+	position: relative;
+}
+.product_review .meta {
+	font-size: 13px;
+	color: #aaaaaa;
+	padding-bottom: 8px;
+	margin-bottom: 10px !important;
+	border-bottom: 1px solid #eee;
+}
+.product_review ul.comments ul{
+	list-style-type: none;
+	padding: 0;
+	margin-left: 85px;
+}
+.product_review h3{
+  margin: 20px 0 0;
+	font-size: 26px;
+	line-height: 30px;
+}
+app-rating{
+    display: block;
+    overflow: hidden;
+}
