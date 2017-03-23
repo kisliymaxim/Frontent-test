@@ -1,5 +1,5 @@
 # Test project
-Frontent test
+Frontend test
 
 Instruction:
 1. git clone https://github.com/kisliymaxim/Frontent-test
